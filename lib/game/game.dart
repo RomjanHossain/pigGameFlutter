@@ -10,15 +10,37 @@ class GamePage extends StatefulWidget {
 class _GamePageState extends State<GamePage> {
   Random random = new Random();
   bool player = true;
+  String playerOne = 'Player 1';
+  String playerTwo = 'Player 2';
+  bool gameOn = true;
   int first = 1;
   int second = 1;
   int countTotal = 0;
   int count = 0;
   List<int> score = [0, 0];
+  void winGame() {
+    setState(() {
+      if (score[0] > 19) {
+        print('player one wins');
+        playerOne = 'WINNER';
+        gameOn = false;
+      }
+      if (score[1] > 19) {
+        print('player two wins');
+        playerTwo = 'WINNER';
+        gameOn = false;
+      }
+    });
+  }
+
   void rollDice() {
     setState(() {
       first = random.nextInt(6) + 1;
       second = random.nextInt(6) + 1;
+      if (first == second) {
+        changeActive();
+        countTotal = 0;
+      }
       count = first + second;
       countTotal += count;
     });
@@ -32,6 +54,9 @@ class _GamePageState extends State<GamePage> {
       countTotal = 0;
       score[0] = 0;
       score[1] = 0;
+      playerOne = 'Player 1';
+      playerTwo = 'Player 2';
+      gameOn = true;
       if (player == false) {
         player = true;
       }
@@ -45,8 +70,10 @@ class _GamePageState extends State<GamePage> {
         player = false;
       } else {
         score[1] += countTotal;
+        print('hooo');
         player = true;
       }
+
       countTotal = 0;
     });
   }
@@ -98,7 +125,7 @@ class _GamePageState extends State<GamePage> {
                           child: Row(
                             children: <Widget>[
                               Text(
-                                'Player 1',
+                                '$playerOne',
                                 style: TextStyle(
                                   fontSize: 29,
                                 ),
@@ -141,7 +168,7 @@ class _GamePageState extends State<GamePage> {
                           child: Row(
                             children: <Widget>[
                               Text(
-                                'Player 2',
+                                '$playerTwo',
                                 style: TextStyle(
                                   fontSize: 29,
                                 ),
@@ -222,7 +249,9 @@ class _GamePageState extends State<GamePage> {
                       padding: const EdgeInsets.all(8.0),
                       child: FloatingActionButton.extended(
                         onPressed: () {
-                          rollDice();
+                          if (gameOn) {
+                            rollDice();
+                          }
                         },
                         label: Text(
                           'Roll Dice',
@@ -236,7 +265,10 @@ class _GamePageState extends State<GamePage> {
                     ),
                     FloatingActionButton.extended(
                       onPressed: () {
-                        changeActive();
+                        if (gameOn) {
+                          changeActive();
+                          winGame();
+                        }
                         // print('hold my boobs');
                       },
                       label: Text(
