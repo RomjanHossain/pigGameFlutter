@@ -7,14 +7,16 @@ class Players extends StatefulWidget {
 
 class _PlayersState extends State<Players> {
   // var player2 = true;
-  var player = true;
-  void active() {
-    setState(() {
-      if (player) {
-        var myIcon = Icon(Icons.fiber_smart_record);
-      }
-    });
-  }
+  bool player = false;
+  // void active() {
+  //   setState(() {
+  //     if (player == 0) {
+  //       player = 1;
+  //     } else {
+  //       player = 0;
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +51,12 @@ class _PlayersState extends State<Players> {
                             fontSize: 29,
                           ),
                         ),
-                        Icon(
-                          Icons.fiber_manual_record,
-                          color: Colors.white,
-                        )
+                        if (player == true)
+                          // Text('The condition is true!'),
+                          Icon(
+                            Icons.fiber_manual_record,
+                            color: Colors.white,
+                          ),
                       ],
                     ),
                   ),
@@ -89,7 +93,12 @@ class _PlayersState extends State<Players> {
                             fontSize: 29,
                           ),
                         ),
-                        Icon(Icons.fiber_manual_record),
+                        if (player == false)
+                          // Text('The condition is true!'),
+                          Icon(
+                            Icons.fiber_manual_record,
+                            color: Colors.white,
+                          ),
                       ],
                     ),
                   ),
