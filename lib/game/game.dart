@@ -107,6 +107,7 @@ class _GamePageState extends State<GamePage> {
               color: Colors.white,
             ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
