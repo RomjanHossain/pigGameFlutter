@@ -10,10 +10,23 @@ class _GamePageState extends State<GamePage> {
   Random random = new Random();
   int first = 1;
   int second = 1;
+  int countTotal = 0;
+  int count = 0;
   void rollDice() {
     setState(() {
       first = random.nextInt(6) + 1;
       second = random.nextInt(6) + 1;
+      count = first + second;
+      countTotal += count;
+    });
+  }
+
+  void newGame() {
+    setState(() {
+      first = 1;
+      second = 1;
+      count = 0;
+      countTotal = 0;
     });
   }
 
@@ -28,7 +41,9 @@ class _GamePageState extends State<GamePage> {
               padding: const EdgeInsets.only(top: 5),
               child: FloatingActionButton.extended(
                 onPressed: () {
-                  print('New Game btn pressed');
+                  // newGame();
+                  print('holy mony');
+                  newGame();
                 },
                 label: Text('New Game'),
               ),
@@ -48,7 +63,7 @@ class _GamePageState extends State<GamePage> {
                 height: 70,
                 child: Center(
                     child: Text(
-                  '69',
+                  '$countTotal',
                   style: TextStyle(
                     fontSize: 26,
                     color: Colors.white,
