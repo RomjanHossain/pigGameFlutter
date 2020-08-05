@@ -30,11 +30,13 @@ class _MyGamePageState extends State<MyGamePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Colors.deepPurpleAccent,
       appBar: AppBar(
         title: Text(
           'Pig Game',
         ),
         centerTitle: true,
+        backgroundColor: Colors.pink,
       ),
       body: GamePage(),
     );
