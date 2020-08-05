@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
+import 'players.dart';
 
 class GamePage extends StatefulWidget {
   @override
@@ -38,7 +39,7 @@ class _GamePageState extends State<GamePage> {
         children: <Widget>[
           Center(
             child: Padding(
-              padding: const EdgeInsets.only(top: 5),
+              padding: const EdgeInsets.only(top: 5, bottom: 5),
               child: FloatingActionButton.extended(
                 onPressed: () {
                   // newGame();
@@ -49,12 +50,16 @@ class _GamePageState extends State<GamePage> {
               ),
             ),
           ),
+          Players(),
           Row(
             children: <Widget>[
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.asset('images/dice$first.png'),
+                  child: Image.asset(
+                    'images/dice$first.png',
+                    color: Colors.cyan,
+                  ),
                 ),
               ),
               Container(
@@ -76,15 +81,18 @@ class _GamePageState extends State<GamePage> {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.asset('images/dice$second.png'),
+                  child: Image.asset(
+                    'images/dice$second.png',
+                    color: Colors.cyan,
+                  ),
                 ),
               ),
             ],
           ),
           Center(
             child: Container(
-              height: 200,
-              width: 200,
+              height: 150,
+              width: 150,
               // color: Colors.white,
               child: Center(
                 child: Column(
@@ -96,20 +104,32 @@ class _GamePageState extends State<GamePage> {
                         onPressed: () {
                           rollDice();
                         },
-                        label: Text('Roll Dice'),
+                        label: Text(
+                          'Roll Dice',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                          ),
+                        ),
+                        backgroundColor: Colors.grey[50],
                       ),
                     ),
                     FloatingActionButton.extended(
                       onPressed: () {},
-                      label: Text('Hold'),
+                      label: Text(
+                        'Hold',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                        ),
+                      ),
+                      backgroundColor: Colors.grey[50],
                     ),
                   ],
                 ),
               ),
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  // shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(50)),
+                  color: Colors.white, borderRadius: BorderRadius.circular(50)),
             ),
           ),
         ],
