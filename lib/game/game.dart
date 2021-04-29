@@ -270,7 +270,6 @@ class _GamePageState extends State<GamePage> {
                           changeActive();
                           winGame();
                         }
-                        // print('hold my boobs');
                       },
                       label: Text(
                         'Hold',
